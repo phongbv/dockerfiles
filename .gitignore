@@ -3,3 +3,5 @@
 ################################################################################
 
 /OracleDatabase/SingleInstance/dockerfiles/12.2.0.1/linuxx64_12201_database.zip
+/OracleSOA/fmw_12.2.1.3.0_soa_quickstart2.jar
+/OracleSOA/fmw_12.2.1.3.0_soa_quickstart.jar
