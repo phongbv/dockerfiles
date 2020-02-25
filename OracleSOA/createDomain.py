@@ -1,10 +1,11 @@
 #!/usr/bin/python
+#! Run wlst /u01/oracle/soa/createDomain.py to create domain
 import os
 import re
 import sys
 import getopt
-oracleHome = "C:\Oracle\Middleware\Oracle_Home"
-domainName = "test_domain"
+oracleHome = "/u01/oracle/soa"
+domainName = "dev_domain"
 password = "admin123"
 hostName = None
 listenPort = None
@@ -12,7 +13,7 @@ listenPort = None
 
 print('--> About creating compact_domain...')
 if listenPort == None:
- listenPort = 8192
+ listenPort = 7001
 if hostName == None:
  hostName = 'localhost'
 if domainName == None:

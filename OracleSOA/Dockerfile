@@ -59,6 +59,8 @@ ADD $SOA_PKG2 /u01/
 COPY $JAVA_RPM /u01/
 COPY install.file /u01/
 COPY oraInst.loc /u01/
+COPY createDomain.py /u01/
+COPY updListenAddress.py /u01/
 
 # Install and configure Oracle JDK 7u75
 # -------------------------------------
@@ -84,10 +86,17 @@ WORKDIR /u01
 # Remove packages
 RUN mkdir /u01/oracle/.inventory && \
 chown oracle:oracle -R /u01 && \
-su oracle -c "java -jar $SOA_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/install.file -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME"
-#rm $SOA_PKG $SOA_PKG2 /u01/$SOA_ZIP /u01/oraInst.loc /u01/install.file
+su oracle -c "java -jar $SOA_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/install.file -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME" && \
+rm $SOA_PKG $SOA_PKG2 /u01/oraInst.loc /u01/install.file
+
+USER oracle
+# create domain
+RUN -c "/u01/oracle/soa/wlserver/common/bin/wlst.sh /u01/createDomain.py"
+RUN -c "/u01/oracle/soa/wlserver/common/bin/wlst.sh /u01/updListenAddress.py"
 
 WORKDIR /u01/oracle/
+
+EXPOSE 1521 5500
 
 ENV PATH $PATH:/u01/oracle/soa/oracle_common/common/bin
 

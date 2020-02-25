@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\OracleSOA"
   ],
+  "SelectedNode": "\\OracleSOA\\createDomain.py",
   "PreviewInSolutionExplorer": false
 }
