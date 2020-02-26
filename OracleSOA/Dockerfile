@@ -91,8 +91,12 @@ rm $SOA_PKG $SOA_PKG2 /u01/oraInst.loc /u01/install.file
 
 USER oracle
 # create domain
-RUN -c "/u01/oracle/soa/wlserver/common/bin/wlst.sh /u01/createDomain.py"
-RUN -c "/u01/oracle/soa/wlserver/common/bin/wlst.sh /u01/updListenAddress.py"
+#RUN "/u01/oracle/soa/wlserver/common/bin/wlst.sh /u01/createDomain.py"
+
+# export thehost=`hostname -I`
+# export ADMIN_HOST=soa
+# export vol_name=''
+#RUN "/u01/oracle/soa/wlserver/common/bin/wlst.sh -skipWLSModuleScanning /u01/updListenAddress.py $vol_name ${thehost} AdminServer ${ADMIN_HOST}"
 
 WORKDIR /u01/oracle/
 

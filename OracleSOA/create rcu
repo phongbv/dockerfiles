@@ -1,0 +1,29 @@
+c/Users/PhongBV/source/repos/phongbv/dockerfiles/OracleSOA
+
+export JAVA_RPM=jdk-8u241-linux-x64.rpm
+export SOA_ZIP=fmw_12.1.3.0.0_soaqs_Disk1_1of1.zip
+export SOA_PKG=fmw_12.2.1.3.0_soa_quickstart.jar
+export SOA_PKG2=fmw_12.2.1.3.0_soa_quickstart2.jar
+export JAVA_HOME=/usr/java/default
+export MW_HOME=/u01/oracle/soa
+export CONFIG_JVM_ARGS -Djava.security.egd=file:/dev/./urandom
+
+
+
+export SOFTWARE_DIRECTORY='/home/oracle/software/'
+export ORACLE_HOME="/u01/oracle/product/middleware/12.2.1/installation/"
+export FUSION_MIDDLEWARE_HOME="/u01/oracle/soa/oracle_common"
+export DOMAIN_CONFIG=/u01/oracle/product/middleware/12.2.1/config
+export TEMPORARY_DIRECTORY="${SOFTWARE_DIRECTORY}/tmp"
+export WEBLOGIC_FILE_NAME="fmw_12.2.1.0.0_infrastructure.jar"
+export OSB_FILE_NAME="fmw_12.2.1.0.0_osb.jar"
+
+export SOA_FILE_NAME="fmw_12.2.1.0.0_soa.jar"
+export JVM_FILE_NAME="jdk-8u60-linux-x64.rpm"
+export AUTOMATION_ARTI="/home/oracle/SOA12c-Auto"
+export SCHEMA_PREFIX="PHONG"
+
+${FUSION_MIDDLEWARE_HOME}/bin/rcu -silent -createRepository -databaseType ORACLE -connectString losdb:1521/losdb -dbUser sys -dbRole SYSDBA -schemaPrefix ${SCHEMA_PREFIX} -useSamePasswordForAllSchemaUsers true -component MDS -component IAU -component IAU_APPEND -component IAU_VIEWER -component OPSS -component UCSUMS -component WLS -component STB -component SOAINFRA -f < /home/oracle/password.txt
+
+
+/u01/oracle/soa/soa/common/bin/wlst.sh
